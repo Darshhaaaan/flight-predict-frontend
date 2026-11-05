@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import "./globals.css";
+import LandingScene from "./LandingScene";
 
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
@@ -97,6 +98,9 @@ export default function Home() {
 
   return (
     <main className="flight-page">
+      <div className="flight-stack">
+        <LandingScene />
+
       <div className="flight-card">
         <h1 className="flight-title">
           Flight Price Predictor
@@ -111,11 +115,12 @@ export default function Home() {
           className="flight-form"
         >
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="airline" className="form-label">
               Airline
             </label>
 
             <select
+              id="airline"
               name="airline"
               className="form-select"
               required
@@ -131,11 +136,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="class" className="form-label">
               Class
             </label>
 
             <select
+              id="class"
               name="class"
               className="form-select"
               required
@@ -147,11 +153,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="source_city" className="form-label">
               Source City
             </label>
 
             <select
+              id="source_city"
               name="source_city"
               className="form-select"
               required
@@ -167,11 +174,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="destination_city" className="form-label">
               Destination City
             </label>
 
             <select
+              id="destination_city"
               name="destination_city"
               className="form-select"
               required
@@ -187,11 +195,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="departure_time" className="form-label">
               Departure Time
             </label>
 
             <select
+              id="departure_time"
               name="departure_time"
               className="form-select"
               required
@@ -207,11 +216,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="arrival_time" className="form-label">
               Arrival Time
             </label>
 
             <select
+              id="arrival_time"
               name="arrival_time"
               className="form-select"
               required
@@ -227,11 +237,12 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="stops" className="form-label">
               Number of Stops
             </label>
 
             <select
+              id="stops"
               name="stops"
               className="form-select"
               required
@@ -244,12 +255,13 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="duration" className="form-label">
               Duration (Hours)
             </label>
 
             <input
               type="number"
+              id="duration"
               name="duration"
               min="0"
               max="50"
@@ -261,12 +273,13 @@ export default function Home() {
           </div>
 
           <div className="form-group">
-            <label className="form-label">
+            <label htmlFor="days_left" className="form-label">
               Days Left
             </label>
 
             <input
               type="number"
+              id="days_left"
               name="days_left"
               min="0"
               max="49"
@@ -291,7 +304,7 @@ export default function Home() {
         </form>
 
         {prediction !== null && (
-          <div className="prediction-box">
+          <div className="prediction-box" role="status">
             <p className="prediction-label">
               Predicted Flight Price
             </p>
@@ -303,12 +316,13 @@ export default function Home() {
         )}
 
         {error && (
-          <div className="error-box">
+          <div className="error-box" role="alert">
             <p className="error-text">
               {error}
             </p>
           </div>
         )}
+      </div>
       </div>
     </main>
   );

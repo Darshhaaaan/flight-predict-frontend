@@ -54,11 +54,11 @@ body {
 @keyframes card-rise {
   from {
     opacity: 0;
-    transform: translateY(24px) scale(0.98);
+    transform: translateY(14px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
@@ -254,6 +254,60 @@ body {
   }
 }
 
+/* ---------- Landing entrance ---------- */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .flight-title,
+  .flight-subtitle {
+    animation: fade-in 0.4s ease-out 0.1s backwards;
+  }
+
+  /* Nine .form-group fields followed by .predict-container */
+  .flight-form > .form-group,
+  .flight-form > .predict-container {
+    animation: rise-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+  }
+
+  .flight-form > :nth-child(1) { animation-delay: 0.1s; }
+  .flight-form > :nth-child(2) { animation-delay: 0.125s; }
+  .flight-form > :nth-child(3) { animation-delay: 0.15s; }
+  .flight-form > :nth-child(4) { animation-delay: 0.175s; }
+  .flight-form > :nth-child(5) { animation-delay: 0.2s; }
+  .flight-form > :nth-child(6) { animation-delay: 0.225s; }
+  .flight-form > :nth-child(7) { animation-delay: 0.25s; }
+  .flight-form > :nth-child(8) { animation-delay: 0.275s; }
+  .flight-form > :nth-child(9) { animation-delay: 0.3s; }
+  .flight-form > :nth-child(10) { animation-delay: 0.325s; }
+}
+
+/* Users who prefer reduced motion get no entrance animations */
+@media (prefers-reduced-motion: reduce) {
+  .flight-card,
+  .prediction-box,
+  .error-box {
+    animation: none;
+  }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   .flight-card {
@@ -271,5 +325,115 @@ body {
 
   .prediction-price {
     font-size: 28px;
+  }
+}
+/* ---------- Airfield landing scene ---------- */
+.flight-stack {
+  width: 100%;
+  max-width: 620px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.landing-scene {
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -20px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.08) inset;
+}
+
+.landing-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Horizontal approach and rollout */
+.landing-plane-x {
+  animation: landing-plane-x 6s linear 0.4s both;
+}
+
+/* Vertical descent, flare, touchdown and bounce */
+.landing-plane-y {
+  animation: landing-plane-y 6s linear 0.4s both;
+}
+
+/* Nose attitude: approach, flare, touchdown, bounce */
+.landing-plane-attitude {
+  transform-box: view-box;
+  transform-origin: 0 0;
+  animation: landing-plane-attitude 6s linear 0.4s both;
+}
+
+@keyframes landing-plane-x {
+  0% {
+    transform: translateX(-440px);
+    animation-timing-function: cubic-bezier(0.3, 0.1, 0.5, 1);
+  }
+  57% {
+    transform: translateX(-70px);
+    animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes landing-plane-y {
+  0% {
+    transform: translateY(-110px);
+    animation-timing-function: ease-in-out;
+  }
+  48% {
+    transform: translateY(-30px);
+    animation-timing-function: ease-out;
+  }
+  57% {
+    transform: translateY(0);
+    animation-timing-function: ease-in;
+  }
+  64% {
+    transform: translateY(-8px);
+    animation-timing-function: ease-in;
+  }
+  71% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes landing-plane-attitude {
+  0% {
+    transform: rotate(3deg);
+    animation-timing-function: ease-in-out;
+  }
+  48% {
+    transform: rotate(-5deg);
+    animation-timing-function: ease-out;
+  }
+  57% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-in;
+  }
+  64% {
+    transform: rotate(-3deg);
+    animation-timing-function: ease-in;
+  }
+  71% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-plane-x,
+  .landing-plane-y,
+  .landing-plane-attitude {
+    animation: none;
   }
 }
