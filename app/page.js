@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import "./globals.css";
+import LandingScene from "./LandingScene";
 
 export default function Home() {
   const [prediction, setPrediction] = useState(null);
@@ -97,6 +98,9 @@ export default function Home() {
 
   return (
     <main className="flight-page">
+      <div className="flight-stack">
+        <LandingScene />
+
       <div className="flight-card">
         <h1 className="flight-title">
           Flight Price Predictor
@@ -318,6 +322,7 @@ export default function Home() {
             </p>
           </div>
         )}
+      </div>
       </div>
     </main>
   );
